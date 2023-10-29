@@ -1,2 +1,4 @@
-# youtube_bilibili
-youtube to bilibili
+# README
+## 安装依赖
+    pip install --upgrade -r .\requirements.txt
+
