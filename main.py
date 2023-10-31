@@ -1,8 +1,11 @@
-from ytb import get_latest_video_link
-from ytb import set_socks_proxy
+import ytb
+import download_video
 SOCKS_PROXY_HOST = 'mg.ztx6506.link'
 SOCKS_PROXY_PORT = 20175
-set_socks_proxy()
-channel_id = input('id:')
-result = get_latest_video_link('AIzaSyDE32cZMQK60oiniyXmI3CEMKMQvw2Hg7c', channel_id)
-print('最新视频链接:',result)
+ytb.set_socks_proxy()
+# channel_id = input('id:')
+result = ytb.get_latest_video_link('AIzaSyDE32cZMQK60oiniyXmI3CEMKMQvw2Hg7c', 'UC3xZYc4SZUGfRERIvDRGqDQ')
+print(result)
+download_video.set_socks_proxy()
+download_video.download(result)
+
