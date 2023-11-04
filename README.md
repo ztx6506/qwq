@@ -1,4 +1,4 @@
 # README
 ## 安装依赖
-    pip install --upgrade -r .\requirements.txt
+    pip install --upgrade -r requestments.text
 
