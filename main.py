@@ -1,7 +1,7 @@
-import ytb,os,socket,socks,google.oauth2.credentials
+import yt_dlp,socket,socks,time,os
 from googleapiclient.discovery import build
-SOCKS_PROXY_HOST = 'mg.ztx6506.link'   # 设置SOCKS代理主机为`mg.ztx6506.link`
-SOCKS_PROXY_PORT = 20175
+SOCKS_PROXY_HOST = '127.0.0.1'   # 设置SOCKS代理主机为`mg.ztx6506.link`
+SOCKS_PROXY_PORT = 7890
 def set_socks_proxy():
     # 设置 SOCKS 代理
     socks.set_default_proxy(socks.SOCKS5, SOCKS_PROXY_HOST, SOCKS_PROXY_PORT)
@@ -25,34 +25,23 @@ def get_latest_video_link(api_key, channel_id):
     # 生成视频链接
     video_link = f'https://www.youtube.com/watch?v={video_id}'
     return video_link
+def download(url,host,port, resolution='1080p'):
+    options = {
+        'format': f'bestvideo[height<={resolution}]+bestaudio/best[height<={resolution}]',
+        'outtmpl': f'%(title)s.{resolution}.%(ext)s',
+        '--proxy': f'socks5://{host}:{port}',
+    }
 
+    with yt_dlp.YoutubeDL(options) as ydl:
+        ydl.download([url])
 
-# if __name__ == '__main__':
-#     set_socks_proxy()  # 设置 SOCKS 代理
-#     video_link = get_latest_video_link(API_KEY, CHANNEL_ID)
-#     print("最新视频链接:", video_link)
-
-def download(URL,proxy,port):
-    try:
-        # 使用os.system执行命令
-        command = f'yt-dlp -f mp4 {URL} --proxy socks5://{proxy}":"{port}'
-        return_code = os.system(command)
-
-        # 检查命令执行结果
-        if return_code == 0:
-            print("Command executed successfully.")
-        else:
-            print(f"Error: The command returned a non-zero exit code ({return_code})..")
-
-    except Exception as e:
-        print("An error occurred:", str(e))
-def main():
+def mainloop():
     set_socks_proxy()
-    url = get_latest_video_link('AIzaSyDE32cZMQK60oiniyXmI3CEMKMQvw2Hg7c', 'UC3xZYc4SZUGfRERIvDRGqDQ')
+    url = get_latest_video_link('AIzaSyDE32cZMQK60oiniyXmI3CEMKMQvw2Hg7c', 'UCvijahEyGtvMpmMHBu4FS2w')
     print(url)
-    download(url,SOCKS_PROXY_HOST,SOCKS_PROXY_PORT)
+    download(url,SOCKS_PROXY_HOST,SOCKS_PROXY_PORT,download_directory,resolution='1080p')
     print("下载完成")
 while True:
-    main()  # 循环执行程序
+    mainloop()  # 循环执行程序
     print("循环执行程序")
     time.sleep(10)
