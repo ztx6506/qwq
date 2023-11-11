@@ -1,4 +1,4 @@
-import ytb,os,socket,socks,google.oauth2.credentials
+import os,socket,socks,time
 from googleapiclient.discovery import build
 SOCKS_PROXY_HOST = 'mg.ztx6506.link'   # 设置SOCKS代理主机为`mg.ztx6506.link`
 SOCKS_PROXY_PORT = 20175
@@ -25,13 +25,6 @@ def get_latest_video_link(api_key, channel_id):
     # 生成视频链接
     video_link = f'https://www.youtube.com/watch?v={video_id}'
     return video_link
-
-
-# if __name__ == '__main__':
-#     set_socks_proxy()  # 设置 SOCKS 代理
-#     video_link = get_latest_video_link(API_KEY, CHANNEL_ID)
-#     print("最新视频链接:", video_link)
-
 def download(URL,proxy,port):
     try:
         # 使用os.system执行命令
