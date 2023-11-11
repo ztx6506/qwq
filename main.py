@@ -25,11 +25,10 @@ def get_latest_video_link(api_key, channel_id):
     # 生成视频链接
     video_link = f'https://www.youtube.com/watch?v={video_id}'
     return video_link
-download_directory = './download'
-def download(url, host, port, download_dir='.', resolution='1080p'):
+def download(url,host,port, resolution='1080p'):
     options = {
         'format': f'bestvideo[height<={resolution}]+bestaudio/best[height<={resolution}]',
-        'outtmpl': os.path.join(download_dir, f'%(title)s.{resolution}.%(ext)s'),
+        'outtmpl': f'%(title)s.{resolution}.%(ext)s',
         '--proxy': f'socks5://{host}:{port}',
     }
 
