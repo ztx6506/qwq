@@ -1,7 +1,7 @@
 import yt_dlp,socket,socks,time,os
 from googleapiclient.discovery import build
-SOCKS_PROXY_HOST = 'mg.ztx6506.link'   # 设置SOCKS代理主机为`mg.ztx6506.link`
-SOCKS_PROXY_PORT = 12345
+SOCKS_PROXY_HOST = '127.0.0.1'   # 设置SOCKS代理主机为`mg.ztx6506.link`
+SOCKS_PROXY_PORT = 20170
 def set_socks_proxy():
     # 设置 SOCKS 代理
     socks.set_default_proxy(socks.SOCKS5, SOCKS_PROXY_HOST, SOCKS_PROXY_PORT)
