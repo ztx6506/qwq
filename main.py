@@ -1,6 +1,7 @@
 import yt_dlp,socket,socks,time,os
 from googleapiclient.discovery import build
 from tinydb import TinyDB, Query
+import configparser
 SOCKS_PROXY_HOST = '127.0.0.1'   # 设置SOCKS代理主机为`mg.ztx6506.link`
 SOCKS_PROXY_PORT = 10810
 class DB:
@@ -64,6 +65,9 @@ def download(url, host, port, download_dir='.', resolution='1080p'):
     with yt_dlp.YoutubeDL(options) as ydl:
         ydl.download([url])
 download_directory = 'output'
+#cover 封面 desc 简介 tag标签 tid分区 title标题
+# def upload(cover,desc,tag,tid,title):
+#     os.system(}
 def mainloop():
     set_socks_proxy()
     url = get_latest_video_link('AIzaSyDE32cZMQK60oiniyXmI3CEMKMQvw2Hg7c', 'UCMiJRAwDNSNzuYeN2uWa0pA')
@@ -81,4 +85,7 @@ def mainloop():
     my_db.close()
 
 if __name__ == '__main__':
-    mainloop()
+    # mainloop()
+    config=configparser.ConfigParser()
+    config.read('config.ini')
+    print(chinese_text)

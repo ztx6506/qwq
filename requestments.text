@@ -9,3 +9,4 @@ pydantic>=1.9.0
 ffmpeg_python>=0.2.0
 tinydb
 qrcode[pil]
+tencentcloud-sdk-python
