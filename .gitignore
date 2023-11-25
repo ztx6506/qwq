@@ -3,4 +3,5 @@ __pycache__/
 ytb/
 .gitignore
 output/
-
+cookie/
+.git/
