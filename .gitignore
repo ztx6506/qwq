@@ -1,7 +1,7 @@
 __pycache__/
 .idea/
 ytb/
-.gitignore
 output/
 cookie/
 .git/
+cookie.json
