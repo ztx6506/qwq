@@ -1,12 +1,10 @@
-PySocks
 google-auth
 google-auth-httplib2
 google-auth-oauthlib
 google-api-python-client
-yt-dlp
 requests>=2.28.1
 pydantic>=1.9.0
 ffmpeg_python>=0.2.0
 tinydb
 qrcode[pil]
-tencentcloud-sdk-python
+Pillow

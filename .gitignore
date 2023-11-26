@@ -5,3 +5,4 @@ output/
 cookie/
 .git/
 cookie.json
+config.ini
