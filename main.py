@@ -37,7 +37,7 @@ def downloader(url):
 download_directory = 'output'
 
 
-def simple_progress_bar(current, total, prefix='', length=30, fill='█', print_end='\r'):
+def simple_progress_bar(current, total, prefix='', length=30, fill='😮‍💨', print_end='\r'):
     percent = ("{0:.1f}").format(100 * (current / float(total)))
     filled_length = int(length * current // total)
     bar = fill * filled_length + '-' * (length - filled_length)
@@ -60,10 +60,6 @@ def mainloop():
             query=Query()
             if my_db.query(query.url == url['video_id']):
                 print('视频已存在')
-                for i in range(101):
-                    time.sleep(36)  # Simulate some work
-                    simple_progress_bar(i, 100, prefix='等待:', length=50)
-
             else:
                 my_db.add({'name': url['title'], 'url': url['video_id']})
                 downloader(url['video_id'])
@@ -80,9 +76,6 @@ def mainloop():
                 os.remove(cover_file)
                 print("上传完成")
                 my_db.close()
-                for i in range(101):
-                    time.sleep(3)  # Simulate some work
-                    simple_progress_bar(i, 100, prefix='等待:', length=50)
         for i in range(101):
                     time.sleep(3)  # Simulate some work
                     simple_progress_bar(i, 100, prefix='等待:', length=50)
