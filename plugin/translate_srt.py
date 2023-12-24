@@ -1,6 +1,27 @@
 import GoogleTranslator
 import re
-from concurrent.futures import ThreadPoolExecutor
+from bcut_asr import BcutASR
+from bcut_asr.orm import ResultStateEnum
+def srt_convent(file):
+    asr = BcutASR(file)
+    asr.upload()  # 上传文件
+    asr.create_task()  # 创建任务
+
+    # 轮询检查结果
+    while True:
+        result = asr.result()
+        # 判断识别成功
+        if result.state == ResultStateEnum.COMPLETE:
+            break
+
+    # 解析字幕内容
+    subtitle = result.parse()
+    # 判断是否存在字幕
+    if subtitle.has_data():
+        # 输出srt格式
+        with open('out.srt', 'w', encoding='utf-8') as file:
+            file.writelines(subtitle.to_srt())
+        # print(subtitle.to_srt())
 def translate_srt(input_file,output_file):
     with open(input_file, 'r', encoding='utf-8') as file:
         srt_content = file.read()
@@ -21,5 +42,8 @@ def translate_srt(input_file,output_file):
         translated_subtitles.append(translated_subtitle)
     with open(output_file, 'w', encoding='utf-8') as file:
         file.writelines(translated_subtitles)
+
+
 if __name__ == "__main__":
-    translate_srt('test.srt','test_translated.srt')
+    translate_srt('out.srt','test_translated.srt')
+    # srt_convent('1.mp3')
