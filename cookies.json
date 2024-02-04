@@ -2,64 +2,59 @@
   "cookie_info": {
     "cookies": [
       {
-        "expires": 1709059843,
+        "expires": 1722603115,
         "http_only": 1,
         "name": "SESSDATA",
-        "same_site": 0,
         "secure": 0,
-        "value": "d2d7a3ef%2C1716835843%2Cf171cbb2CjALkYYDGq-UpAC4mUNPF4de__wWI4IKRmU0yS1TnXFxn2bkX_bpbBw4OndVIwXODKsSVnVueldzbFlEdnpNZ3hTbmF0YWJyV0tBMmN3RXFza1VLanBGc2dTOTJoTTFDRlhraEx1QmFfdFdOU2ZaQ3VtNzd4cDduMFR2MFB5UnNqVzFtVUNGcDdBIIEC"
+        "value": "840b4637%2C1722603115%2C12fe4a22"
       },
       {
-        "expires": 1709059843,
+        "expires": 1722603115,
         "http_only": 0,
         "name": "bili_jct",
-        "same_site": 0,
         "secure": 0,
-        "value": "1cbd4ce32ec45ecfc397ef08e4668f66"
+        "value": "2584f6db90f2f571048b9668eafe5de5"
       },
       {
-        "expires": 1709059843,
+        "expires": 1722603115,
         "http_only": 0,
         "name": "DedeUserID",
-        "same_site": 0,
         "secure": 0,
         "value": "306822853"
       },
       {
-        "expires": 1709059843,
+        "expires": 1722603115,
         "http_only": 0,
         "name": "DedeUserID__ckMd5",
-        "same_site": 0,
         "secure": 0,
         "value": "0721f98ac2a488f5"
       },
       {
-        "expires": 1709059843,
+        "expires": 1722603115,
         "http_only": 0,
         "name": "sid",
-        "same_site": 0,
         "secure": 0,
-        "value": "qbkcplre"
+        "value": "6afctk4r"
       }
     ],
     "domains": [
       ".bilibili.com",
       ".biligame.com",
-      ".bilibili.cn",
-      ".bilicomic.com",
-      ".bilicomics.com"
+      ".bigfun.cn",
+      ".bigfunapp.cn",
+      ".dreamcast.hk"
     ]
   },
   "sso": [
     "https://passport.bilibili.com/api/v2/sso",
     "https://passport.biligame.com/api/v2/sso",
-    "https://passport.bilibili.cn/api/v2/sso"
+    "https://passport.bigfunapp.cn/api/v2/sso"
   ],
   "token_info": {
-    "access_token": "e860c464742dd6dcd40db85cdc528db2CjALkYYDGq-UpAC4mUNPF4de__wWI4IKRmU0yS1TnXFxn2bkX_bpbBw4OndVIwXODKsSVnVueldzbFlEdnpNZ3hTbmF0YWJyV0tBMmN3RXFza1VLanBGc2dTOTJoTTFDRlhraEx1QmFfdFdOU2ZaQ3VtNzd4cDduMFR2MFB5UnNqVzFtVUNGcDdBIIEC",
+    "access_token": "e223706b3240c38b33b7f486e0aff422",
     "expires_in": 15552000,
     "mid": 306822853,
-    "refresh_token": "cc929962c5dba38214f18bcac92de8b2"
+    "refresh_token": "908afbfa9caa9ec0db11a38acc4a8922"
   },
   "platform": "BiliTV"
 }
