@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制中心</title>
+</head>
+<h1>终端</h1>
+<body>
+<form action="/process" method="post">
+    URL:<input type="text" name="URL">
+    <br>
+    <label for="platform">平台</label>
+    <select id="platform" name="platform">
+        <option value="youtube">youtube</option>
+        <option value="others">others</option>
+    </select>
+    <input type="submit" value="提交">
+    {% if index_Error %}
+    <script>
+        window.onload = function () {
+            alert('链接错误')
+        }
+    </script>
+    {% endif %}
+</form>
+</body>
+</html>

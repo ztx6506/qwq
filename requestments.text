@@ -8,3 +8,4 @@ ffmpeg_python>=0.2.0
 tinydb
 qrcode[pil]
 Pillow
+yt-dlp
