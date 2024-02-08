@@ -9,3 +9,4 @@ tinydb
 qrcode[pil]
 Pillow
 yt-dlp
+BeautifulSoup4

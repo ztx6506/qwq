@@ -36,11 +36,12 @@
 #             simple_progress_bar(i, 100, prefix='等待:', length=50)
 import plugins as pl
 from flask import Flask, render_template, request, url_for, redirect
+import platform,os
 
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return render_template('index.html', index_Error =False)
+    return render_template('index.html', index_Error =False,platform_Error = False)
 
 @app.route('/process',methods=['POST'])
 def process():
@@ -48,14 +49,27 @@ def process():
         if request.form.get('platform') == 'youtube':
             try:
                 data = request.form['URL']
-                data=data.split('?v=')
-                print(data)
-                id = data[1]
-                print(id)
+                data1=data.split('?v=')
+                print(data1)
+                id = data1[1]
+                ##下载
+                pl.dv(id)
+                #格式转换
+                pl.webp_to_jpg(f'./video/{id}.webp',f'./video/{id}.jpg')
+                os.remove(f'./video/{id}.webp')
+                Platform = platform.system()
+                title = pl.GoogleTrans().query(pl.get_title(data),lang_to='zh_cn')
+                print(title)
+                if platform.system() == 'Windows':
+                    # pl.uploader_windows(f'./video/{id}.jpg',)
+                    pass
+                elif platform.system() == 'Linux':
+                    print('2')
+                else:print('不支持系统')
             except IndexError :
-                return render_template('index.html',index_Error = True)
-        # pl.dv(data)
-
+                return render_template('index',index_Error = True , platform_Error = False)
+        else:
+            return render_template('index.html', index_Error = False, platform_Error = True)
 
     return redirect(url_for('index'))
 

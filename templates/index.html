@@ -18,7 +18,14 @@
     {% if index_Error %}
     <script>
         window.onload = function () {
-            alert('链接错误')
+            alert('URL错误')
+        }
+    </script>
+    {% endif %}
+    {% if platform_Error%}
+    <script>
+        window.onload = function () {
+            alert(`暂未开放其他平台`)
         }
     </script>
     {% endif %}

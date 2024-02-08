@@ -1,4 +1,4 @@
-import os, time, yt_dlp, platform
+import os, time, yt_dlp
 from PIL import Image
 import urllib.parse
 import requests
@@ -6,6 +6,8 @@ import json
 import re
 import ssl
 import ctypes
+from bs4 import BeautifulSoup
+
 
 
 # cover 封面 desc 简介 tag标签 tid分区 title标题
@@ -248,3 +250,21 @@ class GoogleTrans(object):
     # originalText, originalLanguageCode, targetText, targetLanguageCode = GoogleTrans().query(text, lang_to='zh-CN')
     # print("==============================")
     # print(originalText, originalLanguageCode, targetText, targetLanguageCode)
+
+
+def get_title(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            title_element = soup.find('title')
+            if title_element:
+                title = title_element.text.split('- ')
+                return title[0]
+            else:
+                return '未找到指定元素'
+        else:
+            return f'请求失败，状态码：{response.status_code}'
+
+    except Exception as e:
+        return f'发生异常：{str(e)}'

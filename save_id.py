@@ -1,14 +1,18 @@
-import time
+from bs4 import BeautifulSoup
 
-def simple_progress_bar(current, total, prefix='', length=30, fill='█', print_end='\r'):
-    percent = ("{0:.1f}").format(100 * (current / float(total)))
-    filled_length = int(length * current // total)
-    bar = fill * filled_length + '-' * (length - filled_length)
-    print(f'\r{prefix} |{bar}| {percent}% Complete', end=print_end)
+html_code = '''
+<h1 class="style-scope ytd-watch-metadata">
+    <yt-formatted-string force-default-style="" class="style-scope ytd-watch-metadata">
+        Intel Arc GPUs Are FINALLY Worth Buying! 🙌
+    </yt-formatted-string>
+</h1>
+'''
 
+# 使用Beautiful Soup解析HTML
+soup = BeautifulSoup(html_code, 'html.parser')
 
-for i in range(101):
-    time.sleep(3)  # Simulate some work
-    simple_progress_bar(i, 100, prefix='Progress:', length=50)
+# 提取标题
+title_element = soup.find('yt-formatted-string', class_='style-scope ytd-watch-metadata')
+title = title_element.get_text(strip=True)
 
-print("\nTask completed!")
+print("标题:", title)
