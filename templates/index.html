@@ -15,7 +15,7 @@
         <option value="others">others</option>
     </select>
     <input type="submit" value="提交">
-    {% if index_Error %}
+    {% if value_Error %}
     <script>
         window.onload = function () {
             alert('URL错误')
@@ -23,11 +23,10 @@
     </script>
     {% endif %}
     {% if platform_Error%}
-    <script>
-        window.onload = function () {
-            alert(`暂未开放其他平台`)
-        }
-    </script>
+    <script>window.onload = function () {alert(`暂未开放其他平台`)}</script>
+    {% endif %}
+    {% if none_Error%}
+    <script>window.onload = function () {alert('url为空')}</script>
     {% endif %}
 </form>
 </body>
