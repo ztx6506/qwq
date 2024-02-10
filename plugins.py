@@ -11,14 +11,10 @@ from bs4 import BeautifulSoup
 
 
 # cover 封面 desc 简介 tag标签 tid分区 title标题
-def uploader_linux(cover, desc, tag, tid, title, file):
-    # os.system('./biliup login')
-    os.system(f'./biliup/biliup upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}')
-    print(f'./biliup/biliup upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}')
-def uploader_windows(cover, desc, tag, tid, title, file):
-    os.system(f'./biliup/biliup.exe upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}')
-    print(f'./biliup/biliup.exe upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}')
-
+def uploader(platform, cover, desc, tag, tid, title, file):
+    command = f'./biliup/biliup{" " if platform == "linux" else ".exe "}upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}'
+    os.system(command)
+    print(command)
 # 下载视频
 
 
@@ -41,6 +37,7 @@ def webp_to_jpg(input_path, output_path):
         print(f"Conversion successful: {output_path}")
     except Exception as e:
         print(f"Error converting WebP to JPEG: {e}")
+
 
 
 def simple_progress_bar(current, total, prefix='', length=30, fill='😮‍💨', print_end='\r'):

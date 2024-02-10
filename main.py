@@ -1,5 +1,7 @@
 import sys,requests
-number = int(sys.argv[1])
-result = number *12
-bark = requests.post(f'https://api.day.app/KR76KmKwtPtjnwy8rCqnd8/{result}?group=bilibili')
-print(result)
+import plugins as pl
+url = str(sys.argv[1])
+title = pl.get_title(url)
+id = url.split('v=')
+pl.dv(id[1])
+pl.webp_to_jpg('./video/{id}.webp','./video/{id}.jpg')
