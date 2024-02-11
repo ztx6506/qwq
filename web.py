@@ -16,7 +16,7 @@ def process():
     if request.method == 'POST':
         if request.form.get('platform') == 'youtube':
             url = request.form['URL']
-            if 'youtube' or 'youtu.be' not in url:
+            if 'youtube' not in url and 'youtu.be' not in url:
                 return render_template('index.html',value_Error = True)
             if not url:
                 return render_template('index.html',none_Error = True)

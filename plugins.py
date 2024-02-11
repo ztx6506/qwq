@@ -7,12 +7,24 @@ import re
 import ssl
 import ctypes
 from bs4 import BeautifulSoup
+from bcut_asr import BcutASR
+from bcut_asr.orm import ResultStateEnum
+import subprocess
+import platform
+def extract_audio(input_file, output_file):
+    # 构建FFmpeg命令
+    ffmpeg_cmd = ['ffmpeg', '-i', input_file, '-vn', '-acodec', 'libmp3lame', '-q:a', '2', output_file]
 
-
+    # 调用FFmpeg命令
+    try:
+        subprocess.run(ffmpeg_cmd, check=True)
+        print("音频提取成功！")
+    except subprocess.CalledProcessError as e:
+        print(f"提取音频时出错：{e}")
 
 # cover 封面 desc 简介 tag标签 tid分区 title标题
-def uploader(platform, cover, desc, tag, tid, title, file):
-    command = f'./biliup/biliup{" " if platform == "linux" else ".exe "}upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}'
+def uploader( cover, desc, tag, tid, title, file):
+    command = f'./biliup/biliup{" " if platform.system() == "linux" else ".exe "}upload --cover {cover} --desc {desc} --tag {tag} --tid {tid} --title {title} {file}'
     os.system(command)
     print(command)
 # 下载视频
@@ -46,7 +58,25 @@ def simple_progress_bar(current, total, prefix='', length=30, fill='😮‍💨'
     bar = fill * filled_length + '-' * (length - filled_length)
     print(f'\r{prefix} |{bar}| {percent}% Complete', end=print_end)
 
+def asr(file):
+    asr = BcutASR(file)
+    asr.upload() # 上传文件
+    asr.create_task() # 创建任务
 
+    # 轮询检查结果
+    while True:
+        result = asr.result()
+        # 判断识别成功
+        if result.state == ResultStateEnum.COMPLETE:
+            break
+
+    # 解析字幕内容
+    subtitle = result.parse()
+    # 判断是否存在字幕
+    if subtitle.has_data():
+        # 输出srt格式
+        with open(f'./video/1.srt', 'w', encoding='utf-8') as f:
+            f.write(subtitle.to_srt())
 ##翻译
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -252,6 +282,7 @@ class GoogleTrans(object):
 def get_title(url):
     try:
         response = requests.get(url)
+        # print(response.text)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             title_element = soup.find('title')
@@ -265,3 +296,4 @@ def get_title(url):
 
     except Exception as e:
         return f'发生异常：{str(e)}'
+
