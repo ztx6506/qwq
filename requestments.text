@@ -10,5 +10,6 @@ qrcode[pil]
 Pillow
 yt-dlp
 BeautifulSoup4
-flask-executor
+uvicorn 
 flask
+asgiref 
