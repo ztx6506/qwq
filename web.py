@@ -20,6 +20,7 @@ def process():
                 return render_template('index.html',value_Error = True)
             if not url:
                 return render_template('index.html',none_Error = True)
+            pr
             # 后台执行
             def run_command():
                 command = f'python3 main.py {url}'
@@ -31,17 +32,5 @@ def process():
             return render_template('index.html', platform_Error=True)
     return render_template('index.html')
 
-
-def fibonacci_recursive(n):
-    if n <= 1:
-        print(n)
-        return n
-    else:
-        print(fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2))
-        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
-
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
-    print(int(input()) * 12)

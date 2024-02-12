@@ -1,2 +1,4 @@
 __pycache__/
 .idea/
+video/
+.vscode/settings.json
